@@ -8,6 +8,10 @@ has at least ~100k characters. ~1M is better.
 '''
 
 from __future__ import print_function
+import os
+os.environ["LD_LIBRARY_PATH"] = "/usr/local/cuda-8.0/lib64"
+os.environ["KERAS_BACKEND"] = "theano"
+
 from keras.callbacks import LambdaCallback
 from keras.models import Sequential
 from keras.layers import Dense, Activation
@@ -18,9 +22,6 @@ import numpy as np
 import random
 import sys
 import io
-import os
-
-os.environ["LD_LIBRARY_PATH"] = "/usr/local/cuda-8.0/lib64"
 
 path = get_file('nietzsche.txt', origin='https://s3.amazonaws.com/text-datasets/nietzsche.txt')
 text = io.open(path, encoding='utf-8').read().lower()
